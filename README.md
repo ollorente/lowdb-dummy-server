@@ -1,2 +1,2 @@
-# lowdb-dummy-server
-A simple server for frondend testing
+# lowDB dummy server
+A simple API server for frontend testing
