@@ -1,0 +1,331 @@
+{
+  "adds": [],
+  "admins": [],
+  "comments": [],
+  "cities": [],
+  "countries": [
+    {
+      "_id": "03b84523-cfa0-491a-94c9-7eb2975193f5",
+      "code": "ar",
+      "isStatus": "true",
+      "name": "Argentina",
+      "slug": "argentina"
+    },
+    {
+      "_id": "317dec6c-8941-473f-8166-2bfed24bc3e9",
+      "code": "ve",
+      "isStatus": "true",
+      "name": "Venezuela",
+      "slug": "venezuela"
+    },
+    {
+      "_id": "d671f427-2520-4b4a-9a99-c6bce6f80e2a",
+      "code": "ec",
+      "isStatus": "true",
+      "name": "Ecuador",
+      "slug": "ecuador"
+    },
+    {
+      "_id": "7d6d5976-0dd6-427b-b895-8ae2d581a4ca",
+      "code": "pe",
+      "isStatus": "true",
+      "name": "Perú",
+      "slug": "peru"
+    },
+    {
+      "_id": "c4b02dcd-c6d2-4137-8096-ea2b0c7d9a72",
+      "code": "cl",
+      "isStatus": "true",
+      "name": "Chile",
+      "slug": "chile"
+    },
+    {
+      "_id": "2906411f-3dd7-4700-8e24-11657e353486",
+      "code": "py",
+      "isStatus": "true",
+      "name": "Paraguay",
+      "slug": "paraguay"
+    },
+    {
+      "_id": "0144a1a4-385a-41cf-a22e-27e6be101154",
+      "code": "uy",
+      "isStatus": "true",
+      "name": "Uruguay",
+      "slug": "uruguay"
+    },
+    {
+      "_id": "11e3222d-979f-4adb-8d5d-e736426d216d",
+      "code": "bo",
+      "isStatus": "true",
+      "name": "Bolivia",
+      "slug": "bolivia"
+    },
+    {
+      "_id": "5057278f-72a5-4748-b7a6-99b9477da915",
+      "code": "br",
+      "isStatus": "true",
+      "name": "Brasil",
+      "slug": "brasil"
+    },
+    {
+      "_id": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "code": "co",
+      "isStatus": "true",
+      "name": "Colombia",
+      "slug": "colombia"
+    }
+  ],
+  "events": [],
+  "followers": [],
+  "groups": [],
+  "likes": [],
+  "messages": [],
+  "offices": [],
+  "pages": [],
+  "posts": [],
+  "states": [
+    {
+      "_id": "7b171f8b-bf55-4ab3-b970-8f4dcad524ab",
+      "code": "BDC",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Bogotá D.C."
+    },
+    {
+      "_id": "6bb8c796-259e-47cb-860e-b1a4edc6f4fb",
+      "code": "AMZ",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Amazonas"
+    },
+    {
+      "_id": "d389e8fc-9224-419f-9c57-b1cc09579ecd",
+      "code": "ANT",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Antioquia"
+    },
+    {
+      "_id": "1d4815d9-a506-4d83-880a-26360d28f632",
+      "code": "ARA",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Arauca"
+    },
+    {
+      "_id": "f28330bc-1baa-44d8-9ffc-a84f672fe6a2",
+      "code": "ATL",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Atlántico"
+    },
+    {
+      "_id": "b0976ced-a60d-4fc2-9149-f52c9d5bce56",
+      "code": "BOL",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Bolívar"
+    },
+    {
+      "_id": "b50694dc-ac20-4146-9875-c070e2cfe52d",
+      "code": "BOY",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Boyacá"
+    },
+    {
+      "_id": "22f80e26-922e-4a85-811d-c513a14a5060",
+      "code": "CAL",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Caldas"
+    },
+    {
+      "_id": "37312950-9134-4dfd-9be0-0a11924571e1",
+      "code": "CAQ",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Caquetá"
+    },
+    {
+      "_id": "150f1c0f-f9a6-4af2-bd25-4224225d9489",
+      "code": "CAS",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Casanare"
+    },
+    {
+      "_id": "f644e1e4-1fb0-4fbf-bd2d-0529cf5a7ec2",
+      "code": "CAU",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Cauca"
+    },
+    {
+      "_id": "e9e40cf1-43e5-40b3-97e5-05cc6d889594",
+      "code": "CES",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Cesar"
+    },
+    {
+      "_id": "fb2a9bd5-21ef-450c-853c-e8ce002eb448",
+      "code": "CHO",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Chocó"
+    },
+    {
+      "_id": "f59d492d-807a-4f58-9576-f0345c1a63f7",
+      "code": "COR",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Córdoba"
+    },
+    {
+      "_id": "733c675a-0da9-4ff1-a227-f508d6921c0a",
+      "code": "CAM",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Cundinamarca"
+    },
+    {
+      "_id": "fa86bc6a-5fcb-4ba6-95d7-d6fc4e1f9055",
+      "code": "GNA",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Guainía"
+    },
+    {
+      "_id": "d8b35449-f68a-4760-8e2b-2ce9468ea15c",
+      "code": "GJR",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Guajira"
+    },
+    {
+      "_id": "546a04c4-e30f-410a-94f8-21c20bce78c0",
+      "code": "GVR",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Guaviare"
+    },
+    {
+      "_id": "95b3115e-ba2d-4ced-bd73-bea332930004",
+      "code": "HUI",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Huila"
+    },
+    {
+      "_id": "894dbfe0-8347-4893-9913-e04d87b10f94",
+      "code": "MAG",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Magdalena"
+    },
+    {
+      "_id": "0dee5021-1f3c-44f8-8f49-49420bbae19b",
+      "code": "MET",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Meta"
+    },
+    {
+      "_id": "890f4a50-33a7-4e0d-a5b6-a066986cf847",
+      "code": "NAR",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Nariño"
+    },
+    {
+      "_id": "f5322430-2e0c-4f56-8de6-b4d397c63273",
+      "code": "NDS",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Norte de Santander"
+    },
+    {
+      "_id": "370076b7-51b9-4586-8ef6-a87d540370ae",
+      "code": "PUT",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Putumayo"
+    },
+    {
+      "_id": "0018a383-12ec-46fa-b350-afc24723fbea",
+      "code": "QUI",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Quindío"
+    },
+    {
+      "_id": "6506a648-7c5e-44fb-aa87-7e3e7ba25365",
+      "code": "RIS",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Risaralda"
+    },
+    {
+      "_id": "10c5af57-b40e-46a0-a10c-9b6c0018a785",
+      "code": "SAP",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "San Andrés y Providencia"
+    },
+    {
+      "_id": "f5fd35a1-8d1c-4879-9dc5-0799587ce187",
+      "code": "SAN",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Santander"
+    },
+    {
+      "_id": "d4561290-3cc7-4895-bb2e-fab5ade87196",
+      "code": "SUC",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Sucre"
+    },
+    {
+      "_id": "9a0f6c2e-012a-4270-8c84-fe6a47545e15",
+      "code": "TOL",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Tolima"
+    },
+    {
+      "_id": "c91c182c-d46e-4f3c-b6e5-0c89c48524fb",
+      "code": "VDC",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Valle del Cauca"
+    },
+    {
+      "_id": "3d14a170-36ac-40d8-bf9b-c31c9cb765e9",
+      "code": "VAU",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Vaupés"
+    },
+    {
+      "_id": "3e250b6e-b353-45d6-8cd6-684dca104b36",
+      "code": "VIC",
+      "countryId": "b44830da-47c4-449e-894f-1f8ac77accd5",
+      "isStatus": "true",
+      "name": "Vichada"
+    }
+  ],
+  "superusers": [],
+  "users": [
+    {
+      "_id": "7e2d1ff4-aa61-42f4-b832-33b8e854b539",
+      "displayName": "Admininstrator",
+      "email": "info@ciudadbusca.com",
+      "phoneNumber": "3114599335",
+      "photoURL": "",
+      "providerId": "ciudadbusca",
+      "uid": "7e2d1ff4-aa61"
+    }
+  ]
+}
