@@ -2,7 +2,6 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const path = require('path')
-const { join } = require('path')
 
 const app = express()
 
@@ -16,7 +15,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/api/v1', require('./routes'))
 
 /* Static files */
-app.use(express.static(join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 /* Error */
 app.get('*', (req, res) => {
