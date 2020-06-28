@@ -1,0 +1,37 @@
+{
+  "name": "lowdb-dummy-server",
+  "version": "1.0.0",
+  "description": "A simple API server for frontend testing",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ollorente/lowdb-dummy-server.git"
+  },
+  "keywords": [
+    "lowdb",
+    "server",
+    "simple server",
+    "node",
+    "express"
+  ],
+  "author": "Oscar Llorente | llorente_oscar@hotmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ollorente/lowdb-dummy-server/issues"
+  },
+  "homepage": "https://github.com/ollorente/lowdb-dummy-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lowdb": "^1.0.0",
+    "morgan": "^1.10.0",
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
