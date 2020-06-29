@@ -14,10 +14,10 @@ app.create = async (req, res, next) => {
         error: `This email already in use.`
     })
 
-    const infoUuidUser = await getConnection().get('users').find({
-        uid: req.body.nickname
+    const infoUidUser = await getConnection().get('users').find({
+        uid: req.body.uid
     }).value()
-    if (infoUuidUser) return res.status(500).json({
+    if (infoUidUser) return res.status(500).json({
         error: `This nickname already in use.`
     })
 
