@@ -60,7 +60,7 @@ app.get = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('users').find({
-            code: req.params.id.toUpperCase()
+            uid: req.params.id
         }).value()
     } catch (error) {
         return next(error)
@@ -87,7 +87,7 @@ app.update = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('users').find({
-            slug: req.params.id.toUpperCase()
+            uid: req.params.id
         }).assign(req.body).write()
     } catch (error) {
         return next(error)
@@ -100,7 +100,7 @@ app.remove = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('users').remove({
-            slug: req.params.id.toUpperCase()
+            uid: req.params.id
         }).write()
     } catch (error) {
         return next(error)
