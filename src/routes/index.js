@@ -37,6 +37,9 @@ api.route('/cities/:id')
 api.route('/cities/:id/identifier')
     .get(City.identifier)
 
+api.route('/cities/:id/pages')
+    .get(Page.pagesByCity)
+
 api.route('/countries')
     .post(Country.create)
     .get(Country.list)
@@ -48,6 +51,9 @@ api.route('/countries/:id')
 
 api.route('/countries/:id/identifier')
     .get(Country.identifier)
+
+api.route('/countries/:id/pages')
+    .get(Page.pagesByCountry)
 
 api.route('/countries/:id/states')
     .get(State.list)
@@ -74,6 +80,9 @@ api.route('/states/:id/cities')
 
 api.route('/states/:id/identifier')
     .get(State.identifier)
+
+api.route('/states/:id/pages')
+    .get(Page.pagesByState)
 
 api.route('/superusers')
     .post(Superuser.create)
