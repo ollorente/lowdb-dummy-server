@@ -7,6 +7,10 @@ const {
 const app = {}
 
 app.create = async (req, res, next) => {
+    if (req.body.email === '' || req.body.uid == '') return res.status(500).json({
+        error: `These fields cannot be empty.`
+    })
+
     const infoEmailUser = await getConnection().get('users').find({
         email: req.body.email
     }).value()
@@ -19,10 +23,6 @@ app.create = async (req, res, next) => {
     }).value()
     if (infoUidUser) return res.status(500).json({
         error: `This nickname already in use.`
-    })
-
-    if (req.body.email === '' || req.body.uid == '') return res.status(500).json({
-        error: `These fields cannot be empty.`
     })
 
     const newData = {

@@ -4,6 +4,7 @@ const {
     Admin,
     City,
     Country,
+    Page,
     State,
     Superuser,
     User
@@ -45,6 +46,15 @@ api.route('/countries/:id')
 api.route('/countries/:id/states')
     .get(State.list)
 
+api.route('/pages')
+    .post(Page.create)
+    .get(Page.all)
+
+api.route('/pages/:id')
+    .get(Page.get)
+    .put(Page.update)
+    .delete(Page.remove)
+
 api.route('/states')
     .post(State.create)
 
@@ -77,7 +87,9 @@ api.route('/users/:id')
 api.route('/users/:id/comments')
 api.route('/users/:id/likes')
 api.route('/users/:id/messages')
+
 api.route('/users/:id/pages')
+    .get(Page.list)
 
 api.route('*')
     .get((req, res, next) => {
