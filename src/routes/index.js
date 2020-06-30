@@ -4,6 +4,7 @@ const {
     City,
     Country,
     State,
+    Superuser,
     User
 } = require('../controllers')
 
@@ -45,6 +46,15 @@ api.route('/states/:id')
 api.route('/states/:id/cities')
     .get(City.list)
 
+api.route('/superusers')
+    .post(Superuser.create)
+    .get(Superuser.list)
+
+api.route('/superusers/:id')
+    .get(Superuser.get)
+    .put(Superuser.update)
+    .delete(Superuser.remove)
+
 api.route('/users')
     .post(User.create)
     .get(User.list)
@@ -53,6 +63,11 @@ api.route('/users/:id')
     .get(User.get)
     .put(User.update)
     .delete(User.remove)
+
+api.route('/users/:id/comments')
+api.route('/users/:id/likes')
+api.route('/users/:id/messages')
+api.route('/users/:id/pages')
 
 api.route('*')
     .get((req, res, next) => {

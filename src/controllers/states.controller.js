@@ -22,7 +22,7 @@ app.create = async (req, res, next) => {
         _id: v4(),
         code: req.body.code.toUpperCase(),
         countryId: data._id,
-        isStatus: req.body.isStatus,
+        isStatus: req.body.isStatus || true,
         name: req.body.name
     }
 

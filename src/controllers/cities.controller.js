@@ -22,7 +22,7 @@ app.create = async (req, res, next) => {
         _id: v4(),
         code: req.body.code,
         stateId: data._id,
-        isStatus: req.body.isStatus,
+        isStatus: req.body.isStatus || true,
         name: req.body.name
     }
 
@@ -60,7 +60,7 @@ app.get = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('cities').find({
-            code: req.params.id.toUpperCase()
+            code: req.params.id.toLowerCase()
         }).value()
     } catch (error) {
         return next(error)
@@ -71,7 +71,7 @@ app.get = async (req, res, next) => {
 
 app.update = async (req, res, next) => {
     const infoCity = await getConnection().get('cities').find({
-        code: req.params.id.toUpperCase()
+        code: req.params.id.toLowerCase()
     }).value()
     if (!infoCity) return res.status(500).json({
         error: `Item don't exist.`
@@ -91,7 +91,7 @@ app.update = async (req, res, next) => {
 
 app.remove = async (req, res, next) => {
     const infoCity = await getConnection().get('cities').find({
-        code: req.params.id.toUpperCase()
+        code: req.params.id.toLowerCase()
     }).value()
     if (!infoCity) return res.status(500).json({
         error: `Item don't exist.`

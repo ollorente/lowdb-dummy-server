@@ -7,24 +7,27 @@ const {
 const app = {}
 
 app.create = async (req, res, next) => {
-    const infoCountry = await getConnection().get('countries').find({
-        slug: req.body.slug
+    const infoSuperuser = await getConnection().get('superusers').find({
+        uid: req.body.uid
     }).value()
-    if (infoCountry) return res.status(500).json({
+    if (infoSuperuser) return res.status(500).json({
         error: `Item exist.`
+    })
+
+    if (req.body.email === '' || req.body.uid == '') return res.status(500).json({
+        error: `These fields cannot be empty.`
     })
 
     const newData = {
         _id: v4(),
-        code: req.body.code,
-        isStatus: req.body.isStatus || true,
-        name: req.body.name,
-        slug: req.body.slug
+        displayName: req.body.displayName || '',
+        email: req.body.email.toLowerCase(),
+        uid: req.body.uid
     }
 
     let result
     try {
-        result = await getConnection().get('countries').push(newData).write()
+        result = await getConnection().get('superusers').push(newData).write()
     } catch (error) {
         return next(error)
     }
@@ -35,7 +38,7 @@ app.create = async (req, res, next) => {
 app.list = async (req, res, next) => {
     let result
     try {
-        result = await getConnection().get('countries').sortBy('name').value()
+        result = await getConnection().get('superusers').sortBy('displayName').value()
     } catch (error) {
         return next(error)
     }
@@ -46,8 +49,8 @@ app.list = async (req, res, next) => {
 app.get = async (req, res, next) => {
     let result
     try {
-        result = await getConnection().get('countries').find({
-            slug: req.params.id
+        result = await getConnection().get('superusers').find({
+            uid: req.params.id
         }).value()
     } catch (error) {
         return next(error)
@@ -57,17 +60,17 @@ app.get = async (req, res, next) => {
 }
 
 app.update = async (req, res, next) => {
-    const infoCountry = await getConnection().get('countries').find({
-        slug: req.body.slug
+    const infoSuperuser = await getConnection().get('superusers').find({
+        uid: req.params.id
     }).value()
-    if (!infoCountry) return res.status(500).json({
+    if (!infoSuperuser) return res.status(500).json({
         error: `Item don't exist.`
     })
 
     let result
     try {
-        result = await getConnection().get('countries').find({
-            slug: infoCountry.slug
+        result = await getConnection().get('superusers').find({
+            uid: infoSuperuser.uid
         }).assign(req.body).write()
     } catch (error) {
         return next(error)
@@ -77,17 +80,17 @@ app.update = async (req, res, next) => {
 }
 
 app.remove = async (req, res, next) => {
-    const infoCountry = await getConnection().get('countries').find({
-        slug: req.body.slug
+    const infoSuperuser = await getConnection().get('superusers').find({
+        uid: req.params.id
     }).value()
-    if (!infoCountry) return res.status(500).json({
+    if (!infoSuperuser) return res.status(500).json({
         error: `Item don't exist.`
     })
 
     let result
     try {
-        result = await getConnection().get('countries').remove({
-            slug: infoCountry.slug
+        result = await getConnection().get('superusers').remove({
+            uid: infoSuperuser.uid
         }).write()
     } catch (error) {
         return next(error)
