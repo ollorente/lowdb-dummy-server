@@ -10,7 +10,9 @@ app.create = async (req, res, next) => {
     const infoState = await getConnection().get('states').find({
         code: req.body.code.toUpperCase()
     }).value()
-    if (infoState) return res.status(500).json({ error: `Item exist.` })
+    if (infoState) return res.status(500).json({
+        error: `Item exist.`
+    })
 
     const data = await getConnection().get('countries').find({
         slug: req.body.countryId
@@ -35,9 +37,18 @@ app.create = async (req, res, next) => {
 }
 
 app.list = async (req, res, next) => {
+    const infoCountry = await getConnection().get('countries').find({
+        slug: req.params.id
+    }).value()
+    if (!infoCountry) return res.status(500).json({
+        error: `Item don't exist.`
+    })
+
     let result
     try {
-        result = await getConnection().get('states').value()
+        result = await getConnection().get('states').filter({
+            countryId: infoCountry._id
+        }).sortBy('name').value()
     } catch (error) {
         return next(error)
     }
@@ -59,10 +70,17 @@ app.get = async (req, res, next) => {
 }
 
 app.update = async (req, res, next) => {
+    const infoState = await getConnection().get('states').find({
+        code: req.body.code.toUpperCase()
+    }).value()
+    if (!infoState) return res.status(500).json({
+        error: `Item don't exist.`
+    })
+
     let result
     try {
         result = await getConnection().get('states').find({
-            slug: req.params.id.toUpperCase()
+            slug: infoState.slug
         }).assign(req.body).write()
     } catch (error) {
         return next(error)
@@ -72,10 +90,17 @@ app.update = async (req, res, next) => {
 }
 
 app.remove = async (req, res, next) => {
+    const infoState = await getConnection().get('states').find({
+        code: req.body.code.toUpperCase()
+    }).value()
+    if (!infoState) return res.status(500).json({
+        error: `Item don't exist.`
+    })
+
     let result
     try {
         result = await getConnection().get('states').remove({
-            slug: req.params.id.toUpperCase()
+            slug: infoState.slug
         }).write()
     } catch (error) {
         return next(error)

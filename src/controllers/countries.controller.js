@@ -10,7 +10,9 @@ app.create = async (req, res, next) => {
     const infoCountry = await getConnection().get('countries').find({
         slug: req.body.slug
     }).value()
-    if (infoCountry) return res.status(500).json({ error: `Item exist.` })
+    if (infoCountry) return res.status(500).json({
+        error: `Item exist.`
+    })
 
     const newData = {
         _id: v4(),
@@ -33,7 +35,7 @@ app.create = async (req, res, next) => {
 app.list = async (req, res, next) => {
     let result
     try {
-        result = await getConnection().get('countries').value()
+        result = await getConnection().get('countries').sortBy('name').value()
     } catch (error) {
         return next(error)
     }
@@ -55,10 +57,17 @@ app.get = async (req, res, next) => {
 }
 
 app.update = async (req, res, next) => {
+    const infoCountry = await getConnection().get('countries').find({
+        slug: req.body.slug
+    }).value()
+    if (!infoCountry) return res.status(500).json({
+        error: `Item don't exist.`
+    })
+
     let result
     try {
         result = await getConnection().get('countries').find({
-            slug: req.params.id
+            slug: infoCountry.slug
         }).assign(req.body).write()
     } catch (error) {
         return next(error)
@@ -68,10 +77,17 @@ app.update = async (req, res, next) => {
 }
 
 app.remove = async (req, res, next) => {
+    const infoCountry = await getConnection().get('countries').find({
+        slug: req.body.slug
+    }).value()
+    if (!infoCountry) return res.status(500).json({
+        error: `Item don't exist.`
+    })
+
     let result
     try {
         result = await getConnection().get('countries').remove({
-            slug: req.params.id
+            slug: infoCountry.slug
         }).write()
     } catch (error) {
         return next(error)

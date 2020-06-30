@@ -48,7 +48,7 @@ app.create = async (req, res, next) => {
 app.list = async (req, res, next) => {
     let result
     try {
-        result = await getConnection().get('users').value()
+        result = await getConnection().get('users').sortBy('displayName').value()
     } catch (error) {
         return next(error)
     }
@@ -70,6 +70,13 @@ app.get = async (req, res, next) => {
 }
 
 app.update = async (req, res, next) => {
+    const infoUser = await getConnection().get('users').find({
+        uid: req.body.uid
+    }).value()
+    if (!infoUser) return res.status(500).json({
+        error: `Item don't exist.`
+    })
+
     const infoEmailUser = await getConnection().get('users').find({
         email: req.body.email.toLowerCase()
     }).value()
@@ -81,13 +88,13 @@ app.update = async (req, res, next) => {
         uid: req.body.uid
     }).value()
     if (infoUuidUser) return res.status(500).json({
-        error: `This nickname already in use.`
+        error: `Item exist.`
     })
 
     let result
     try {
         result = await getConnection().get('users').find({
-            uid: req.params.id
+            uid: infoUser.uid
         }).assign(req.body).write()
     } catch (error) {
         return next(error)
@@ -97,10 +104,17 @@ app.update = async (req, res, next) => {
 }
 
 app.remove = async (req, res, next) => {
+    const infoUser = await getConnection().get('users').find({
+        uid: req.body.uid
+    }).value()
+    if (!infoUser) return res.status(500).json({
+        error: `Item don't exist.`
+    })
+
     let result
     try {
         result = await getConnection().get('users').remove({
-            uid: req.params.id
+            uid: infoUser.uid
         }).write()
     } catch (error) {
         return next(error)
