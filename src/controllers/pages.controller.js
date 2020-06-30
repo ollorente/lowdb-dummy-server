@@ -86,7 +86,7 @@ app.get = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('pages').find({
-            uid: req.params.id
+            slug: req.params.id
         }).value()
     } catch (error) {
         return next(error)
@@ -138,7 +138,7 @@ app.remove = async (req, res, next) => {
 app.all = async (req, res, next) => {
     let result
     try {
-        result = await getConnection().get('pages').sortBy('displayName').value()
+        result = await getConnection().get('pages').sortBy('name').value()
     } catch (error) {
         return next(error)
     }

@@ -34,6 +34,9 @@ api.route('/cities/:id')
     .put(City.update)
     .delete(City.remove)
 
+api.route('/cities/:id/identifier')
+    .get(City.identifier)
+
 api.route('/countries')
     .post(Country.create)
     .get(Country.list)
@@ -42,6 +45,9 @@ api.route('/countries/:id')
     .get(Country.get)
     .put(Country.update)
     .delete(Country.remove)
+
+api.route('/countries/:id/identifier')
+    .get(Country.identifier)
 
 api.route('/countries/:id/states')
     .get(State.list)
@@ -65,6 +71,9 @@ api.route('/states/:id')
 
 api.route('/states/:id/cities')
     .get(City.list)
+
+api.route('/states/:id/identifier')
+    .get(State.identifier)
 
 api.route('/superusers')
     .post(Superuser.create)

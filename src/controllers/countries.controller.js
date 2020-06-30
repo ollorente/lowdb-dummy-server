@@ -96,4 +96,17 @@ app.remove = async (req, res, next) => {
     res.status(204).json(result)
 }
 
+app.identifier = async (req, res, next) => {
+    let result
+    try {
+        result = await getConnection().get('countries').find({
+            _id: req.params.id
+        }).value()
+    } catch (error) {
+        return next(error)
+    }
+
+    res.status(200).json(result)
+}
+
 module.exports = app
