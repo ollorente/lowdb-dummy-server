@@ -1,6 +1,7 @@
 const api = require('express').Router()
 
 const {
+    Admin,
     City,
     Country,
     State,
@@ -14,6 +15,15 @@ api.route('/')
             message: `¡Bienvenido al API de pruebas!`
         })
     })
+
+api.route('/admins')
+    .post(Admin.create)
+    .get(Admin.list)
+
+api.route('/admins/:id')
+    .get(Admin.get)
+    .put(Admin.update)
+    .delete(Admin.remove)
 
 api.route('/cities')
     .post(City.create)
