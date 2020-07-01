@@ -32,7 +32,8 @@ app.create = async (req, res, next) => {
         phoneNumber: req.body.phoneNumber || '',
         photoURL: req.body.photoURL || '',
         providerId: req.body.providerId || 'ciudadbusca',
-        uid: req.body.uid
+        uid: req.body.uid,
+        createdAt: Date.now()
     }
 
     let result

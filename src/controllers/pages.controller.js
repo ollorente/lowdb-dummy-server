@@ -61,7 +61,8 @@ app.create = async (req, res, next) => {
         mobile: req.body.mobile,
         countryId: country,
         stateId: state,
-        cityId: city
+        cityId: city,
+        createdAt: Date.now()
     }
 
     let result
@@ -169,7 +170,7 @@ app.pagesByCity = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('pages').filter({
-            cityId: infoCity._id
+            cityId: infoCity._id // TODO Buscar parametro interno code
         }).sortBy('name').value()
     } catch (error) {
         return next(error)
@@ -189,7 +190,7 @@ app.pagesByState = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('pages').filter({
-            stateId: infoState._id
+            stateId: infoState._id // TODO Buscar parametro interno code
         }).sortBy('name').value()
     } catch (error) {
         return next(error)
@@ -200,7 +201,7 @@ app.pagesByState = async (req, res, next) => {
 
 app.pagesByCountry = async (req, res, next) => {
     const infoCountry = await getConnection().get('countries').find({
-        slug: req.params.id
+        slug: req.params.id 
     }).value()
     if (!infoCountry) return res.status(500).json({
         error: `Item don't exist.`
@@ -209,7 +210,7 @@ app.pagesByCountry = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('pages').filter({
-            countryId: infoCountry._id
+            countryId: infoCountry._id // TODO Buscar parametro interno slug
         }).sortBy('name').value()
     } catch (error) {
         return next(error)

@@ -22,7 +22,8 @@ app.create = async (req, res, next) => {
         _id: v4(),
         displayName: req.body.displayName || '',
         email: req.body.email.toLowerCase(),
-        uid: req.body.uid
+        uid: req.body.uid,
+        createdAt: Date.now()
     }
 
     let result
