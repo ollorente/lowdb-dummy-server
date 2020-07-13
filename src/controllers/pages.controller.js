@@ -62,6 +62,8 @@ app.create = async (req, res, next) => {
         countryId: country,
         stateId: state,
         cityId: city,
+        isActive: true,
+        isLock: false,
         createdAt: Date.now()
     }
 
@@ -164,7 +166,10 @@ app.remove = async (req, res, next) => {
 app.all = async (req, res, next) => {
     let result
     try {
-        result = await getConnection().get('pages').sortBy('name').value()
+        result = await getConnection().get('pages').filter({
+            isActive: true,
+            isLock: false
+        }).sortBy('name').value()
     } catch (error) {
         return next(error)
     }
@@ -185,7 +190,9 @@ app.pagesByCity = async (req, res, next) => {
         result = await getConnection().get('pages').filter({
             cityId: {
                 _id: infoCity._id
-            }
+            },
+            isActive: true,
+            isLock: false
         }).sortBy('name').value()
     } catch (error) {
         return next(error)
@@ -196,7 +203,7 @@ app.pagesByCity = async (req, res, next) => {
 
 app.pagesByState = async (req, res, next) => {
     const infoState = await getConnection().get('states').find({
-        code: req.params.id
+        code: req.params.id.toUpperCase()
     }).value()
     if (!infoState) return res.status(500).json({
         error: `Item don't exist.`
@@ -205,8 +212,12 @@ app.pagesByState = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('pages').filter({
-            stateId: infoState._id
-        }).sortBy('name').value() // TODO Buscar parametro interno code
+            stateId: {
+                _id: infoState._id
+            },
+            isActive: true,
+            isLock: false
+        }).sortBy('name').value()
     } catch (error) {
         return next(error)
     }
@@ -225,8 +236,12 @@ app.pagesByCountry = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('pages').filter({
-            countryId: infoCountry._id
-        }).sortBy('name').value() // TODO Buscar parametro interno slug
+            countryId: {
+                _id: infoCountry._id
+            },
+            isActive: true,
+            isLock: false
+        }).sortBy('name').value()
     } catch (error) {
         return next(error)
     }
