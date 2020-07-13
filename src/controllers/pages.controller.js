@@ -108,6 +108,19 @@ app.get = async (req, res, next) => {
     res.status(200).json(result)
 }
 
+app.getById = async (req, res, next) => {
+    let result
+    try {
+        result = await getConnection().get('pages').find({
+            _id: req.params.id
+        }).value()
+    } catch (error) {
+        return next(error)
+    }
+
+    res.status(200).json(result)
+}
+
 app.update = async (req, res, next) => {
     const infoPage = await getConnection().get('pages').find({
         uid: req.params.id
@@ -170,7 +183,9 @@ app.pagesByCity = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('pages').filter({
-            cityId: infoCity._id // TODO Buscar parametro interno code
+            cityId: {
+                _id: infoCity._id
+            }
         }).sortBy('name').value()
     } catch (error) {
         return next(error)
@@ -190,8 +205,8 @@ app.pagesByState = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('pages').filter({
-            stateId: infoState._id // TODO Buscar parametro interno code
-        }).sortBy('name').value()
+            stateId: infoState._id
+        }).sortBy('name').value() // TODO Buscar parametro interno code
     } catch (error) {
         return next(error)
     }
@@ -201,7 +216,7 @@ app.pagesByState = async (req, res, next) => {
 
 app.pagesByCountry = async (req, res, next) => {
     const infoCountry = await getConnection().get('countries').find({
-        slug: req.params.id 
+        slug: req.params.id
     }).value()
     if (!infoCountry) return res.status(500).json({
         error: `Item don't exist.`
@@ -210,8 +225,28 @@ app.pagesByCountry = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('pages').filter({
-            countryId: infoCountry._id // TODO Buscar parametro interno slug
-        }).sortBy('name').value()
+            countryId: infoCountry._id
+        }).sortBy('name').value() // TODO Buscar parametro interno slug
+    } catch (error) {
+        return next(error)
+    }
+
+    res.status(200).json(result)
+}
+
+app.postsList = async (req, res, next) => {
+    const infoPage = await getConnection().get('pages').find({
+        slug: req.params.id
+    }).value()
+    if (!infoPage) return res.status(500).json({
+        error: `Item don't exist.`
+    })
+
+    let result
+    try {
+        result = await getConnection().get('posts').filter({
+            pageId: infoPage._id
+        }).sortBy('createdAt').value().reverse()
     } catch (error) {
         return next(error)
     }

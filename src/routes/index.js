@@ -5,6 +5,7 @@ const {
     City,
     Country,
     Page,
+    Post,
     State,
     Superuser,
     User
@@ -66,6 +67,27 @@ api.route('/pages/:id')
     .get(Page.get)
     .put(Page.update)
     .delete(Page.remove)
+    
+api.route('/pages/:id/posts')
+    .post(Post.create)
+    .get(Page.postsList)
+
+api.route('/pages/:id/id')
+    .get(Page.getById)
+
+api.route('/posts')
+    .get(Post.list)
+
+api.route('/posts/:id')
+    .get(Post.get)
+    .put(Post.update)
+    .delete(Post.remove)
+
+api.route('/posts/:id/comments')
+    .get(Post.comments)
+
+api.route('/posts/:id/likes')
+    .get(Post.likes)
 
 api.route('/states')
     .post(State.create)
