@@ -38,7 +38,7 @@ app.create = async (req, res, next) => {
 
 app.list = async (req, res, next) => {
     const infoState = await getConnection().get('states').find({
-        code: req.params.id.toUpperCase()
+        code: req.params.id
     }).value()
     if (!infoState) return res.status(500).json({
         error: `Item don't exist.`
@@ -60,7 +60,7 @@ app.get = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('cities').find({
-            code: req.params.id.toLowerCase()
+            code: req.params.id
         }).value()
     } catch (error) {
         return next(error)

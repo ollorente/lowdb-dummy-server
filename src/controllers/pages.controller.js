@@ -25,10 +25,14 @@ app.create = async (req, res, next) => {
         _id: infoCountry._id,
         code: infoCountry.code,
         name: infoCountry.name,
-    } : "colombia"
+    } : {
+        _id: 'b44830da-47c4-449e-894f-1f8ac77accd5',
+        name: 'Colombia',
+        slug: 'colombia'
+    }
 
     const infoState = await getConnection().get('states').find({
-        code: req.body.stateId.toUpperCase()
+        code: req.body.stateId
     }).value()
     const state = infoState ? {
         _id: infoState._id,
@@ -37,7 +41,7 @@ app.create = async (req, res, next) => {
     } : ""
 
     const infoCity = await getConnection().get('cities').find({
-        code: req.body.cityId.toLowerCase()
+        code: req.body.cityId
     }).value()
     const city = infoCity ? {
         _id: infoCity._id,
@@ -48,7 +52,7 @@ app.create = async (req, res, next) => {
     const newData = {
         _id: v4(),
         name: req.body.name,
-        slug: req.body.slug.toLowerCase(),
+        slug: req.body.slug,
         userId: req.body.userId,
         geo: {
             lat: req.body.geoLat || 4,
@@ -203,7 +207,7 @@ app.pagesByCity = async (req, res, next) => {
 
 app.pagesByState = async (req, res, next) => {
     const infoState = await getConnection().get('states').find({
-        code: req.params.id.toUpperCase()
+        code: req.params.id
     }).value()
     if (!infoState) return res.status(500).json({
         error: `Item don't exist.`
