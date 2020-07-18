@@ -23,7 +23,7 @@ app.create = async (req, res, next) => {
     }).value()
     const country = infoCountry ? {
         _id: infoCountry._id,
-        code: infoCountry.code,
+        slug: infoCountry.slug,
         name: infoCountry.name,
     } : {
         _id: 'b44830da-47c4-449e-894f-1f8ac77accd5',

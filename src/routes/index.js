@@ -2,6 +2,7 @@ const api = require('express').Router()
 
 const {
     Admin,
+    Comment,
     City,
     Country,
     Page,
@@ -26,6 +27,11 @@ api.route('/admins/:id')
     .get(Admin.get)
     .put(Admin.update)
     .delete(Admin.remove)
+
+api.route('/comments/:id')
+    .get(Comment.get)
+    .put(Comment.update)
+    .delete(Comment.remove)
 
 api.route('/cities')
     .post(City.create)
@@ -67,7 +73,7 @@ api.route('/pages/:id')
     .get(Page.get)
     .put(Page.update)
     .delete(Page.remove)
-    
+
 api.route('/pages/:id/posts')
     .post(Post.create)
     .get(Page.postsList)
@@ -84,6 +90,7 @@ api.route('/posts/:id')
     .delete(Post.remove)
 
 api.route('/posts/:id/comments')
+    .post(Comment.create)
     .get(Post.comments)
 
 api.route('/posts/:id/likes')
@@ -125,6 +132,11 @@ api.route('/users/:id')
     .delete(User.remove)
 
 api.route('/users/:id/comments')
+    .get(User.comments)
+
+api.route('/users/:id/id')
+    .get(User.getById)
+
 api.route('/users/:id/likes')
 api.route('/users/:id/messages')
 

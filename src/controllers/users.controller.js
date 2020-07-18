@@ -124,4 +124,37 @@ app.remove = async (req, res, next) => {
     res.status(204).json(result)
 }
 
+app.comments = async (req, res, next) => {
+    const infoUser = await getConnection().get('users').find({
+        uid: req.params.id
+    }).value()
+    if (infoUser) return res.status(500).json({
+        error: `Item exist.`
+    })
+
+    let result
+    try {
+        result = await getConnection().get('comments').find({
+            userId: infoUser._id
+        }).sortBy('createdAt', 'desc').take(req.query.limit || 5).value()
+    } catch (error) {
+        return next(error)
+    }
+
+    res.status(200).json(result)
+}
+
+app.getById = async (req, res, next) => {
+    let result
+    try {
+        result = await getConnection().get('users').find({
+            _id: req.params.id
+        }).value()
+    } catch (error) {
+        return next(error)
+    }
+
+    res.status(200).json(result)
+}
+
 module.exports = app

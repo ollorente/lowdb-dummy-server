@@ -110,7 +110,7 @@ app.comments = async (req, res, next) => {
 
     let result
     try {
-        result = await getConnection().get('comments').find({
+        result = await getConnection().get('comments').filter({
             postId: req.params.id
         }).sortBy('createdAt', 'desc').value()
     } catch (error) {

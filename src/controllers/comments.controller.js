@@ -10,14 +10,21 @@ app.create = async (req, res, next) => {
     const infoPost = await getConnection().get('posts').find({
         _id: req.params.id
     }).value()
-    if (infoPost) return res.status(500).json({
-        error: `Item exist.`
+    if (!infoPost) return res.status(500).json({
+        error: `Item don't exist.`
+    })
+
+    const infoUser = await getConnection().get('users').find({
+        uid: req.body.userId
+    }).value()
+    if (!infoUser) return res.status(500).json({
+        error: `Item don´t exist.`
     })
 
     const newData = {
         _id: v4(),
-        userId: req.body.uid,
-        postId: req.body.postId,
+        userId: infoUser._id,
+        postId: infoPost._id,
         comment: req.body.comment,
         createdAt: Date.now()
     }
@@ -32,31 +39,11 @@ app.create = async (req, res, next) => {
     res.status(201).json(result)
 }
 
-app.list = async (req, res, next) => {
-    const infoPost = await getConnection().get('posts').find({
-        _id: req.params.id
-    }).value()
-    if (infoPost) return res.status(500).json({
-        error: `Item exist.`
-    })
-
-    let result
-    try {
-        result = await getConnection().get('comments').find({
-            uid: req.params.id
-        }).sortBy('createdAt', 'desc').take(5).value()
-    } catch (error) {
-        return next(error)
-    }
-
-    res.status(200).json(result)
-}
-
 app.get = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('comments').find({
-            uid: req.params.id
+            _id: req.params.id
         }).value()
     } catch (error) {
         return next(error)
@@ -66,17 +53,17 @@ app.get = async (req, res, next) => {
 }
 
 app.update = async (req, res, next) => {
-    const infoAdmin = await getConnection().get('comments').find({
-        uid: req.params.id
+    const infoComment = await getConnection().get('comments').find({
+        _id: req.params.id
     }).value()
-    if (!infoAdmin) return res.status(500).json({
+    if (!infoComment) return res.status(500).json({
         error: `Item don't exist.`
     })
 
     let result
     try {
         result = await getConnection().get('comments').find({
-            uid: infoAdmin.uid
+            _id: infoComment.uid
         }).assign(req.body).write()
     } catch (error) {
         return next(error)
@@ -86,17 +73,17 @@ app.update = async (req, res, next) => {
 }
 
 app.remove = async (req, res, next) => {
-    const infoAdmin = await getConnection().get('comments').find({
-        uid: req.params.id
+    const infoComment = await getConnection().get('comments').find({
+        _id: req.params.id
     }).value()
-    if (!infoAdmin) return res.status(500).json({
+    if (!infoComment) return res.status(500).json({
         error: `Item don't exist.`
     })
 
     let result
     try {
         result = await getConnection().get('comments').remove({
-            uid: infoAdmin.uid
+            _id: infoComment._id
         }).write()
     } catch (error) {
         return next(error)

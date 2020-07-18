@@ -60,7 +60,7 @@ app.get = async (req, res, next) => {
     let result
     try {
         result = await getConnection().get('states').find({
-            code: req.params.id.toUpperCase()
+            code: req.params.id
         }).value()
     } catch (error) {
         return next(error)
