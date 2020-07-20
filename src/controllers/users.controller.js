@@ -128,7 +128,7 @@ app.comments = async (req, res, next) => {
     const infoUser = await getConnection().get('users').find({
         uid: req.params.id
     }).value()
-    if (infoUser) return res.status(500).json({
+    if (!infoUser) return res.status(500).json({
         error: `Item exist.`
     })
 

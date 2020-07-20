@@ -26,7 +26,8 @@ app.create = async (req, res, next) => {
         userId: infoUser._id,
         postId: infoPost._id,
         comment: req.body.comment,
-        createdAt: Date.now()
+        createdAt: Date.now(),
+        isLock: false
     }
 
     let result

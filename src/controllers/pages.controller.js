@@ -168,12 +168,15 @@ app.remove = async (req, res, next) => {
 }
 
 app.all = async (req, res, next) => {
+    const { limit } = req.query
+    LIMIT = limit ? Number(limit) : 20 
+
     let result
     try {
         result = await getConnection().get('pages').filter({
             isActive: true,
             isLock: false
-        }).sortBy('name').value()
+        }).take(LIMIT).sortBy('name').value()
     } catch (error) {
         return next(error)
     }

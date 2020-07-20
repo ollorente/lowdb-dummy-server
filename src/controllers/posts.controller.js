@@ -23,7 +23,9 @@ app.create = async (req, res, next) => {
         share: req.body.share || '',
         status: req.body.status || 'public',
         views: 0,
-        createdAt: Date.now()
+        createdAt: Date.now(),
+        isActive: true,
+        isLock: false
     }
 
     let result
@@ -39,7 +41,10 @@ app.create = async (req, res, next) => {
 app.list = async (req, res, next) => {
     let result
     try {
-        result = await getConnection().get('posts').sortBy('createdAt', 'desc').value()
+        result = await getConnection().get('posts').find({
+            isActive: true,
+            isLock: false
+        }).sortBy('createdAt', 'desc').value()
     } catch (error) {
         return next(error)
     }
@@ -102,7 +107,8 @@ app.remove = async (req, res, next) => {
 
 app.comments = async (req, res, next) => {
     const infoPost = await getConnection().get('posts').find({
-        _id: req.params.id
+        _id: req.params.id,
+        isLock: false
     }).value()
     if (!infoPost) return res.status(500).json({
         error: `Item don't exist.`
