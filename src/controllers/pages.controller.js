@@ -168,8 +168,10 @@ app.remove = async (req, res, next) => {
 }
 
 app.all = async (req, res, next) => {
-    const { limit } = req.query
-    LIMIT = limit ? Number(limit) : 20 
+    const {
+        limit
+    } = req.query
+    LIMIT = limit ? Number(limit) : 20
 
     let result
     try {

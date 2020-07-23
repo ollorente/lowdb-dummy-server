@@ -39,12 +39,17 @@ app.create = async (req, res, next) => {
 }
 
 app.list = async (req, res, next) => {
+    const {
+        limit
+    } = req.query
+    LIMIT = limit ? Number(limit) : 20
+
     let result
     try {
-        result = await getConnection().get('posts').find({
+        result = await getConnection().get('posts').filter({
             isActive: true,
             isLock: false
-        }).sortBy('createdAt', 'desc').value()
+        }).take(LIMIT).sortBy('createdAt', 'desc').value()
     } catch (error) {
         return next(error)
     }
@@ -106,6 +111,11 @@ app.remove = async (req, res, next) => {
 }
 
 app.comments = async (req, res, next) => {
+    const {
+        limit
+    } = req.query
+    LIMIT = limit ? Number(limit) : 20
+
     const infoPost = await getConnection().get('posts').find({
         _id: req.params.id,
         isLock: false
@@ -118,7 +128,7 @@ app.comments = async (req, res, next) => {
     try {
         result = await getConnection().get('comments').filter({
             postId: req.params.id
-        }).sortBy('createdAt', 'desc').value()
+        }).take(LIMIT).sortBy('createdAt', 'desc').value()
     } catch (error) {
         return next(error)
     }
