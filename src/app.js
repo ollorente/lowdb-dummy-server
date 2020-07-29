@@ -19,9 +19,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 /* Error */
 app.get('*', (req, res) => {
-    res.status(404).json({
-        error: `Page don't found! :(`
-    })
+	res.status(404).json({
+		error: `Page don't found! :(`
+	})
 })
 
 module.exports = app
