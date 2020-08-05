@@ -11,7 +11,7 @@ app.create = async (req, res, next) => {
 	const {
 		uid
 	} = req.headers
-console.log(uid)
+
 	const infoUser = await getConnection().get('users').find({
 		uid: uid
 	}).value()

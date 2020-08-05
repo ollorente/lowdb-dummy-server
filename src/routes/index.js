@@ -5,6 +5,7 @@ const {
 	Comment,
 	City,
 	Country,
+	Follower,
 	Like,
 	Page,
 	Post,
@@ -66,6 +67,9 @@ api.route('/countries/:id/pages')
 api.route('/countries/:id/states')
 	.get(State.list)
 
+api.route('/followers/:id')
+	.get(Follower.get)
+
 api.route('/pages')
 	.post(Page.create)
 	.get(Page.all)
@@ -78,6 +82,10 @@ api.route('/pages/:id')
 api.route('/pages/:id/posts')
 	.post(Post.create)
 	.get(Page.postsList)
+
+api.route('/pages/:id/followers')
+	.post(Follower.create)
+	.get(Follower.list)
 
 api.route('/pages/:id/id')
 	.get(Page.getById)

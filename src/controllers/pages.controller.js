@@ -61,7 +61,7 @@ app.create = async (req, res, next) => {
 		userId: req.body.userId,
 		geo: {
 			lat: req.body.geoLat || 4,
-			lon: req.body.geoLon || 72
+			lon: req.body.geoLon || -72
 		},
 		image: req.body.image,
 		description: req.body.description,

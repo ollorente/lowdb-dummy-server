@@ -20,6 +20,7 @@ async function createConnection() {
 		offices: [],
 		pages: [],
 		posts: [],
+		stars: [],
 		states: [],
 		superusers: [],
 		users: []
