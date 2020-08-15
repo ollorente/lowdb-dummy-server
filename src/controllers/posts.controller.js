@@ -42,7 +42,7 @@ app.list = async (req, res, next) => {
 	const {
 		limit
 	} = req.query
-	LIMIT = limit ? Number(limit) : 20
+	LIMIT = limit ? Number(limit) : 100
 
 	let result
 	try {
