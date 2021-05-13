@@ -49,7 +49,7 @@ app.list = async (req, res, next) => {
 		result = await getConnection().get('posts').filter({
 			isActive: true,
 			isLock: false
-		}).take(LIMIT).sortBy('createdAt', 'desc').value()
+		}).take(LIMIT).sortBy('createdAt', 'desc').value().reverse()
 	} catch (error) {
 		return next(error)
 	}
@@ -128,7 +128,7 @@ app.comments = async (req, res, next) => {
 	try {
 		result = await getConnection().get('comments').filter({
 			postId: req.params.id
-		}).take(LIMIT).sortBy('createdAt', 'desc').value()
+		}).take(LIMIT).sortBy('createdAt').value().reverse()
 	} catch (error) {
 		return next(error)
 	}
